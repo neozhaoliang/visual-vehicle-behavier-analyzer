@@ -1,0 +1,18 @@
+# This is the (pixel, gps) data file accompanied with the video in this repo.
+# !important: the two lists 'image-pixels' and 'world-points' must be aligned
+# in the same order: each pixel in 'image-pixels' correspondes to the same gps
+# entry in 'world-points'.
+image-pixels:
+  - [1195, 657]
+  - [1148, 171]
+  - [866, 217]
+  - [733, 650]
+world-points:
+  - [39.086500, 117.050857]
+  - [39.086502, 117.051375]
+  - [39.086573, 117.051235]
+  - [39.086558, 117.050848]
+world-origin:
+  - [39.086500, 117.050857]
+test-points:
+  - [39.086512, 117.051020]
