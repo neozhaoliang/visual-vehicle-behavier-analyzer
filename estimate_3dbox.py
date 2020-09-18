@@ -1,3 +1,6 @@
+"""
+Example code shows how to estimate 3d boxes of objects in an image.
+"""
 import os
 import cv2
 from analyzer.box3d import get_box3d_from_detobj, Box3D

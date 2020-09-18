@@ -12,10 +12,10 @@ from utils import create_mask_from_pixels, mask_rect_diff
 # rough size of the objects in real world (in meters)
 prior_knowledge = {
     "car": (4.8, 2, 1.6),
-    "person": (1, 1, 2),
-    "bicycle": (2, 0.5, 1.6),
+    "person": (1, 1, 1.8),
+    "bicycle": (2, 0.5, 1),
     "truck": (8, 3, 2),
-    "motorbike": (2.5, 1, 2),
+    "motorbike": (2.5, 1, 1.6),
     "bus": (10, 3, 2)
 }
 
@@ -128,7 +128,7 @@ def get_box3d_from_detobj(det_obj, camera):
     # project the center of the 2d box to ground as initial position
     x1, y1, x2, y2 = det_obj.box2d
     pt = ((x1 + x2) // 2, (y1 + y2) // 2)
-    p0, = camera.image_to_world([pt])
+    p0, = camera.image_to_world([pt], -prior_knowledge[det_obj.label][2]/2)
     x, y, z = p0
     l, w, h = prior_knowledge[det_obj.label]
 
