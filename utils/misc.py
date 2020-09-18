@@ -170,6 +170,18 @@ def iou_rect(rect1, rect2):
     area2 = (rect2[2] - rect2[0] + 1) * (rect2[3] - rect2[1] + 1)
     return inter / (area1 + area2 - inter)
 
+    
+def mask_rect_diff(mask, rect):
+    """
+    Compute the intersection and difference sets of two a mask and bounding box.
+    """
+    x1, y1, x2, y2 = rect
+    B = mask[y1: y2+1, x1: x2+1]
+    overlap = np.count_nonzero(B)
+    diff1 = np.count_nonzero(mask) - overlap
+    diff2 = (y2 - y1 + 1) * (x2 - x1 + 1) - overlap
+    return [overlap, diff1, diff2]
+
 
 def iou_det_object(detobj1, detobj2):
     """
