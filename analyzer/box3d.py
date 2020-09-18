@@ -139,7 +139,7 @@ def get_box3d_from_detobj(det_obj, camera):
         param = minimize(
             func_cost, params_opt, method="Powell",
             args=(params_fix, camera, det_obj.image_size, det_obj.box2d),
-            options={"maxfev": 2000, "disp": True}
+            options={"maxfev": 1000, "disp": False}
         )
 
         if params_min is None or params_min.fun > param.fun:
