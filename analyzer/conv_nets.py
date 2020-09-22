@@ -83,8 +83,7 @@ class YOLOV3_Net(object):
                         label,
                         score,
                         bbox,
-                        np.int32([W, H]),
-                        None
+                        np.int32([W, H])
                     )
                     detobj_list.append(detobj)
 

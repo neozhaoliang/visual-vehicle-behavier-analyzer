@@ -8,8 +8,7 @@ detobj_field_type = [("frame_index", int),
                      ("label", str),
                      ("score", float),
                      ("box2d", array_from_csv),
-                     ("image_size", array_from_csv),  # image_size = (width, height)
-                     ("mask_code", array_from_csv)]
+                     ("image_size", array_from_csv)]
 
 
 class DetObject(NamedTuple("DetObject", detobj_field_type)):
