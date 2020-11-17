@@ -47,11 +47,12 @@ def get_tracks_from_video(video_file, net, zone=None, print_track=True):
             break
 
     stream.release()
+    cv2.destroyAllWindows()
     bar.close()
 
     # track-track merger.
-    stream = cv2.VideoCapture(video_file)
-    merger = CVTrackMerger(stream)
+    newstream = cv2.VideoCapture(video_file)
+    merger = CVTrackMerger(newstream)
     final_tracks = merger.run_merge_tracks(asso.tracks, zone)
     for track in final_tracks:
         print("track {}: (start frame: {:04d}, end frame: {:04d})".format(
@@ -59,5 +60,5 @@ def get_tracks_from_video(video_file, net, zone=None, print_track=True):
             track.init_frame_index,
             track.last_frame_index))
 
-    stream.release()
+    newstream.release()
     return final_tracks
