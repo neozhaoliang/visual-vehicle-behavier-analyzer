@@ -36,12 +36,12 @@ def get_video_timestamps(video_file):
 
     Example:
     >>> get_video_timestamps("test.mp4")
-    array([0, 34, 67, 101, 134, ..., ])
+    array([0, 40, 80, ..., ])
     """
     stream = cv2.VideoCapture(video_file)
     num_frames = int(stream.get(cv2.CAP_PROP_FRAME_COUNT))
-    stream.set(cv2.CAP_PROP_POS_AVI_RATIO, 1)
-    total_time = stream.get(cv2.CAP_PROP_POS_MSEC)
+    fps = stream.get(cv2.CAP_PROP_FPS)
+    total_time = num_frames / fps * 1000
     time_ms_float = np.linspace(0, total_time, num_frames + 1)
     return np.around(time_ms_float).astype("int")
 
@@ -170,7 +170,7 @@ def iou_rect(rect1, rect2):
     area2 = (rect2[2] - rect2[0] + 1) * (rect2[3] - rect2[1] + 1)
     return inter / (area1 + area2 - inter)
 
-    
+
 def mask_rect_diff(mask, rect):
     """
     Compute the intersection and difference sets of two a mask and bounding box.
@@ -197,4 +197,3 @@ def write_trajectories_csv(trajectory_list, csvfile):
             di = traj._asDict()
             for key, value in di.items():
                 writer.writerow([key, value])
-            
